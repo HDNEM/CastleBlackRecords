@@ -148,5 +148,25 @@ namespace Music.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult BrowseGenre(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.GenreID == id);
+            return View(albums);
+        }
+
+        public ActionResult BrowseArtist(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.ArtistID == id);
+            return View(albums);
+        }
     }
 }

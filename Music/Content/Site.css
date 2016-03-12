@@ -1,4 +1,5 @@
-﻿body {
+﻿
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -21,4 +22,16 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+#albums {
+    background-color:#e6cf8b;
+}
+
+#artists {
+    background-color:#b56969;
+}
+
+#genres {
+    background-color:#22264b;
 }
