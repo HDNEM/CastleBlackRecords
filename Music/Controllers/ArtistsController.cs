@@ -50,8 +50,11 @@ namespace Music.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Artists.Add(artist);
-                db.SaveChanges();
+                if (!db.Artists.Any(a => a.Name.Equals(artist.Name)))
+                {
+                    db.Artists.Add(artist);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
 
