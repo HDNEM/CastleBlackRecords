@@ -27,8 +27,16 @@
         grid.Column("Title", "Title"),
         grid.Column("Artist.Name", "Artist"),
         grid.Column("Genre.Name", "Genre"),
-        grid.Column("Price", "Price")
+        grid.Column("Price", "Price"),
+        grid.Column(" ", format:(item)=>
+            new HtmlString(
+                @Html.ActionLink("Edit  ", "Edit", new { id = item.AlbumID }).ToString() + 
+                @Html.ActionLink("Details  ", "Details", new { id = item.AlbumID }).ToString() +
+                @Html.ActionLink("Delete", "Delete", new { id = item.AlbumID })
+            )
         )
-    )
+                                                                                     
+     )
+)
 
 
