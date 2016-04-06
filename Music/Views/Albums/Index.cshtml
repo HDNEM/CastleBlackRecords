@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Album</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -16,25 +16,30 @@
         <input type="Submit" value="Search" />
     </p>
     }
-    </p>
+</p>
 
 
-    @{WebGrid grid = new WebGrid(Model, rowsPerPage: 4); }
+@{WebGrid grid = new WebGrid(Model, rowsPerPage:6) ; }
 
-    @grid.GetHtml(
+@grid.GetHtml(
     tableStyle: "table",
-    columns: grid.Columns(
+    columns:grid.Columns(
         grid.Column("Title", "Title"),
         grid.Column("Artist.Name", "Artist"),
         grid.Column("Genre.Name", "Genre"),
         grid.Column("Price", "Price"),
-        grid.Column(" ", format: (item) =>
-             new HtmlString(
-                 @Html.ActionLink("Edit  ", "Edit", new { id = item.AlbumID }).ToString() +
-                 @Html.ActionLink("Details  ", "Details", new { id = item.AlbumID }).ToString() +
-                 @Html.ActionLink("Delete", "Delete", new { id = item.AlbumID })
-             )
+        grid.Column("Likes", "Likes", format:(item)=>
+            new HtmlString(item.Likes+
+                @Html.ActionLink(" Like", "LikeAction", new { id = item.AlbumID}).ToString())),
+        grid.Column(" ", format:(item)=>
+            new HtmlString(
+                @Html.ActionLink("Edit  ", "Edit", new { id = item.AlbumID }).ToString() + 
+                @Html.ActionLink("Details  ", "Details", new { id = item.AlbumID }).ToString() +
+                @Html.ActionLink("Delete", "Delete", new { id = item.AlbumID })
+            )
         )
-
+                                                                                     
      )
 )
+
+

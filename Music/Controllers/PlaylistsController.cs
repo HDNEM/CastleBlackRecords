@@ -10,112 +10,107 @@ using Music.Models;
 
 namespace Music.Controllers
 {
-    public class GenresController : Controller
+    public class PlaylistsController : Controller
     {
         private MusicContext db = new MusicContext();
 
-        // GET: Genres
+        // GET: Playlists
         public ActionResult Index()
         {
-            return View(db.Genres.ToList());
+            return View(db.Playlists.ToList());
         }
 
-        // GET: Genres/Details/5
+        // GET: Playlists/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genres.Find(id);
-            if (genre == null)
+            Playlist playlist = db.Playlists.Find(id);
+            if (playlist == null)
             {
                 return HttpNotFound();
             }
-            return View(genre);
+            return View(playlist);
         }
 
-        // GET: Genres/Create
+        // GET: Playlists/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Genres/Create
+        // POST: Playlists/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GenreID,Name")] Genre genre)
+        public ActionResult Create([Bind(Include = "PlaylistID,Title")] Playlist playlist)
         {
-            
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
-                if (!db.Genres.Any(a => a.Name.Equals(genre.Name)))
-                {
-                    db.Genres.Add(genre);
-                    db.SaveChanges();
-                }
-                    return RedirectToAction("Index");
-                
+                db.Playlists.Add(playlist);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            return View(genre);
+            return View(playlist);
         }
 
-        // GET: Genres/Edit/5
+        // GET: Playlists/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genres.Find(id);
-            if (genre == null)
+            Playlist playlist = db.Playlists.Find(id);
+            if (playlist == null)
             {
                 return HttpNotFound();
             }
-            return View(genre);
+            return View(playlist);
         }
 
-        // POST: Genres/Edit/5
+        // POST: Playlists/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GenreID,Name")] Genre genre)
+        public ActionResult Edit([Bind(Include = "PlaylistID,Title")] Playlist playlist)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(genre).State = EntityState.Modified;
+                db.Entry(playlist).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(genre);
+            return View(playlist);
         }
 
-        // GET: Genres/Delete/5
+        // GET: Playlists/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.Genres.Find(id);
-            if (genre == null)
+            Playlist playlist = db.Playlists.Find(id);
+            if (playlist == null)
             {
                 return HttpNotFound();
             }
-            return View(genre);
+            return View(playlist);
         }
 
-        // POST: Genres/Delete/5
+        // POST: Playlists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Genre genre = db.Genres.Find(id);
-            db.Genres.Remove(genre);
+            Playlist playlist = db.Playlists.Find(id);
+            db.Playlists.Remove(playlist);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

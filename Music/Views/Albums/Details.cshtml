@@ -4,6 +4,7 @@
     ViewBag.Title = "Details";
 }
 
+
 <h2>Details</h2>
 
 <div>
@@ -41,10 +42,27 @@
         <dd>
             @Html.DisplayFor(model => model.Price)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Artist.Bio)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Artist.Bio)
+        </dd>
     </dl>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<div>
+    <h3>Suggestions:</h3>
+    <ul>
+        @foreach (var a in ViewBag.Suggested)
+            {
+            <li>@a.Title by @a.Artist.Name</li>
+        }
+    </ul>
+</div>

@@ -15,9 +15,14 @@ namespace Music.Controllers
         private MusicContext db = new MusicContext();
 
         // GET: Albums
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                albums = albums.Where(a => a.Genre.Name.Contains(searchString) ||  a.Artist.Name.Contains(searchString) ||  a.Title.Contains(searchString));
+            }
             return View(albums.ToList());
         }
 
@@ -39,11 +44,15 @@ namespace Music.Controllers
             }
             try {
                 Album album = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.AlbumID == id).Single();
-            
+                
                 if (album == null)
-            {
-                return HttpNotFound();
-            }
+                {
+                    return HttpNotFound();
+                }
+            var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.GenreID == album.GenreID || a.ArtistID == album.ArtistID).ToList();
+                albums.Remove(db.Albums.Find(id));
+                albums = albums.Take(4).ToList();
+                ViewBag.Suggested = albums;
             return View(album);
             }
             catch (Exception)
@@ -167,6 +176,14 @@ namespace Music.Controllers
             }
             var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.ArtistID == id);
             return View(albums);
+        }
+
+        public ActionResult LikeAction(int? id)
+        {
+            Album album = db.Albums.Find(id);
+            album.Likes++;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
