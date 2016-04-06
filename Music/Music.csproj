@@ -132,6 +132,7 @@
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlaylistsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -155,9 +156,34 @@
     <Compile Include="Migrations\201604042127071_artistrequired.Designer.cs">
       <DependentUpon>201604042127071_artistrequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604060224177_artistBio.cs" />
+    <Compile Include="Migrations\201604060224177_artistBio.Designer.cs">
+      <DependentUpon>201604060224177_artistBio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604060301104_likes.cs" />
+    <Compile Include="Migrations\201604060301104_likes.Designer.cs">
+      <DependentUpon>201604060301104_likes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604060324417_playlist.cs" />
+    <Compile Include="Migrations\201604060324417_playlist.Designer.cs">
+      <DependentUpon>201604060324417_playlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604060330246_playlist1.cs" />
+    <Compile Include="Migrations\201604060330246_playlist1.Designer.cs">
+      <DependentUpon>201604060330246_playlist1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604060341160_playlistrequired.cs" />
+    <Compile Include="Migrations\201604060341160_playlistrequired.Designer.cs">
+      <DependentUpon>201604060341160_playlistrequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604060341566_deleteplaylistidrequired.cs" />
+    <Compile Include="Migrations\201604060341566_deleteplaylistidrequired.Designer.cs">
+      <DependentUpon>201604060341566_deleteplaylistidrequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
+    <Compile Include="Models\Playlist.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MusicContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -218,6 +244,11 @@
     <Content Include="Views\Artists\Edit.cshtml" />
     <Content Include="Views\Artists\Index.cshtml" />
     <Content Include="Views\Albums\BrowseArtist.cshtml" />
+    <Content Include="Views\Playlists\Create.cshtml" />
+    <Content Include="Views\Playlists\Delete.cshtml" />
+    <Content Include="Views\Playlists\Details.cshtml" />
+    <Content Include="Views\Playlists\Edit.cshtml" />
+    <Content Include="Views\Playlists\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -245,6 +276,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604042127071_artistrequired.resx">
       <DependentUpon>201604042127071_artistrequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604060224177_artistBio.resx">
+      <DependentUpon>201604060224177_artistBio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604060301104_likes.resx">
+      <DependentUpon>201604060301104_likes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604060324417_playlist.resx">
+      <DependentUpon>201604060324417_playlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604060330246_playlist1.resx">
+      <DependentUpon>201604060330246_playlist1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604060341160_playlistrequired.resx">
+      <DependentUpon>201604060341160_playlistrequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604060341566_deleteplaylistidrequired.resx">
+      <DependentUpon>201604060341566_deleteplaylistidrequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

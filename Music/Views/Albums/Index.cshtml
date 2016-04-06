@@ -19,7 +19,7 @@
 </p>
 
 
-@{WebGrid grid = new WebGrid(Model, rowsPerPage:4) ; }
+@{WebGrid grid = new WebGrid(Model, rowsPerPage:6) ; }
 
 @grid.GetHtml(
     tableStyle: "table",
@@ -28,6 +28,9 @@
         grid.Column("Artist.Name", "Artist"),
         grid.Column("Genre.Name", "Genre"),
         grid.Column("Price", "Price"),
+        grid.Column("Likes", "Likes", format:(item)=>
+            new HtmlString(item.Likes+
+                @Html.ActionLink(" Like", "LikeAction", new { id = item.AlbumID}).ToString())),
         grid.Column(" ", format:(item)=>
             new HtmlString(
                 @Html.ActionLink("Edit  ", "Edit", new { id = item.AlbumID }).ToString() + 
