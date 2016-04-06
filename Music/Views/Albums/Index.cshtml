@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Catalog</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,7 +12,7 @@
     @using (Html.BeginForm())
     {
     <p>
-        @Html.TextBox("SearchString") <br />
+        @Html.TextBox("SearchString")
         <input type="Submit" value="Search" />
     </p>
     }
@@ -30,15 +30,16 @@
         grid.Column("Price", "Price"),
         grid.Column("Likes", "Likes", format:(item)=>
             new HtmlString(item.Likes+
-                @Html.ActionLink(" Like", "LikeAction", new { id = item.AlbumID}).ToString())),
+                @Html.ActionLink(" Likes", "LikeAction", new { id = item.AlbumID}).ToString())),
         grid.Column(" ", format:(item)=>
             new HtmlString(
-                @Html.ActionLink("Edit  ", "Edit", new { id = item.AlbumID }).ToString() + 
-                @Html.ActionLink("Details  ", "Details", new { id = item.AlbumID }).ToString() +
-                @Html.ActionLink("Delete", "Delete", new { id = item.AlbumID })
+                @Html.ActionLink("[Add to Playlist]   ", "addPlaylist", new { id = item.AlbumID }).ToString() +
+                @Html.ActionLink("[Edit]   ", "Edit", new { id = item.AlbumID }).ToString() +
+                @Html.ActionLink("[Details]   ", "Details", new { id = item.AlbumID }).ToString() +
+                @Html.ActionLink("[Delete]", "Delete", new { id = item.AlbumID })
             )
         )
-                                                                                     
+
      )
 )
 

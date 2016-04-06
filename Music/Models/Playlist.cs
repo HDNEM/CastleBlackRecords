@@ -12,5 +12,6 @@ namespace Music.Models
         [Required(ErrorMessage = "Title is required")]
         public string Title { get; set; }
         public IEnumerable<Album> List { get; set; }
+        public Album Album { get; set; }
     }
 }

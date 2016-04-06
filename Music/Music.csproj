@@ -180,6 +180,14 @@
     <Compile Include="Migrations\201604060341566_deleteplaylistidrequired.Designer.cs">
       <DependentUpon>201604060341566_deleteplaylistidrequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604060357467_new.cs" />
+    <Compile Include="Migrations\201604060357467_new.Designer.cs">
+      <DependentUpon>201604060357467_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604060452232_playlistalbum.cs" />
+    <Compile Include="Migrations\201604060452232_playlistalbum.Designer.cs">
+      <DependentUpon>201604060452232_playlistalbum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -197,6 +205,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\castleblackrecords - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -246,10 +255,10 @@
     <Content Include="Views\Playlists\Details.cshtml" />
     <Content Include="Views\Playlists\Edit.cshtml" />
     <Content Include="Views\Playlists\Index.cshtml" />
+    <Content Include="Views\Playlists\AddPlaylist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -292,6 +301,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604060341566_deleteplaylistidrequired.resx">
       <DependentUpon>201604060341566_deleteplaylistidrequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604060357467_new.resx">
+      <DependentUpon>201604060357467_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604060452232_playlistalbum.resx">
+      <DependentUpon>201604060452232_playlistalbum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

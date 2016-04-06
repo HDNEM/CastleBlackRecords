@@ -130,7 +130,7 @@ namespace Music.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
+            Album album = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.AlbumID == id).SingleOrDefault();
             if (album == null)
             {
                 return HttpNotFound();

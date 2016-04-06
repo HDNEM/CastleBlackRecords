@@ -123,5 +123,19 @@ namespace Music.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult addPlaylist(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Album album = db.Albums.Include(a => a.Artist).Include(a => a.Genre).Where(a => a.AlbumID == id).Single();
+            if (album == null)
+            {
+                return HttpNotFound();
+            }
+            return View(album);
+        }
     }
 }
