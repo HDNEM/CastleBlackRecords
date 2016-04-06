@@ -4,48 +4,37 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Album</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Artist)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Artist.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AlbumID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AlbumID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AlbumID })
-        </td>*@
-    </tr>
-}
+    @using (Html.BeginForm())
+    {
+    <p>
+        @Html.TextBox("SearchString") <br />
+        <input type="Submit" value="Search" />
+    </p>
+    }
+    </p>
 
-</table>
+
+    @{WebGrid grid = new WebGrid(Model, rowsPerPage: 4); }
+
+    @grid.GetHtml(
+    tableStyle: "table",
+    columns: grid.Columns(
+        grid.Column("Title", "Title"),
+        grid.Column("Artist.Name", "Artist"),
+        grid.Column("Genre.Name", "Genre"),
+        grid.Column("Price", "Price"),
+        grid.Column(" ", format: (item) =>
+             new HtmlString(
+                 @Html.ActionLink("Edit  ", "Edit", new { id = item.AlbumID }).ToString() +
+                 @Html.ActionLink("Details  ", "Details", new { id = item.AlbumID }).ToString() +
+                 @Html.ActionLink("Delete", "Delete", new { id = item.AlbumID })
+             )
+        )
+
+     )
+)

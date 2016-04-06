@@ -48,11 +48,16 @@ namespace Music.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "GenreID,Name")] Genre genre)
         {
+
             if (ModelState.IsValid)
             {
-                db.Genres.Add(genre);
-                db.SaveChanges();
+                if (!db.Genres.Any(a => a.Name.Equals(genre.Name)))
+                {
+                    db.Genres.Add(genre);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
+
             }
 
             return View(genre);
